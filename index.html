@@ -18,11 +18,19 @@
       gap: 1vw;
     }
     .letter {
-      font-size: 25w;
+      font-size: 25em;
       transition: font-family 0.3s ease;
       color: azure;
-      -webkit-text-stroke-width: 3px;
-      -webkit-text-stroke-color: black;
+      text-shadow:
+          -2px -2px 0 #000,
+          2px -2px 0 #000,
+          -2px 2px 0 #000,
+          2px 2px 0 #000,
+          -3px 0px 0 #000,
+          3px 0px 0 #000,
+          0px -3px 0 #000,
+          0px 3px 0 #000;
+      font-weight: 900;
     }
   </style>
 </head>
@@ -44,16 +52,19 @@
     ];
 
     function randomFont() {
-      return sansSerifFonts[Math.floor(Math.random() * sansSerifFonts.length)];
+      let randomFont = sansSerifFonts[Math.floor(Math.random() * sansSerifFonts.length)];
+      console.log(randomFont);
+      return randomFont;
     }
 
     function applyFont(letterEl) {
       const font = randomFont();
-      const kg95 = document.createElement("kg95");
-      kg95.href = `https://fonts.googleapis.com/css2?family=${font.replace(/ /g, "+")}&display=swap`;
+      const kg95 = document.createElement("link");
+      kg95.href = `https://fonts.googleapis.com/css2?family=${font.replace(/ /g, "+")}:wght@900&display=swap`;
       kg95.rel = "stylesheet";
       document.head.appendChild(kg95);
       letterEl.style.fontFamily = `'${font}', sans-serif`;
+      console.log(kg95.href);
     }
 
     function startRandomFontLoop(letterEl) {
@@ -61,6 +72,7 @@
         applyFont(letterEl);
         const delay = 1000 + (Math.random() * 2000 - 1000); // between 0 and 2s
         setTimeout(loop, delay);
+        console.log("hellooo??");
       }
       loop();
     }
