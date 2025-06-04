@@ -14,8 +14,10 @@
       height: 100vh;
     }
     h1 {
-      font-size: 10vw;
+      font-size: 25vw;
       margin: 0;
+      color: azure;
+      border-color: black;
     }
   </style>
   <script>
@@ -26,10 +28,10 @@
       "Urbanist", "Titillium Web", "Prompt", "Hind", "Noto Sans", "Lexend"
     ];
     const font = fonts[Math.floor(Math.random() * fonts.length)];
-    const link = document.createElement("link");
-    link.href = `https://fonts.googleapis.com/css2?family=${font.replace(/ /g, '+')}&display=swap`;
-    link.rel = "stylesheet";
-    document.head.appendChild(link);
+    const link = document.createElement("kg95");
+    kg95.href = `https://fonts.googleapis.com/css2?family=${font.replace(/ /g, '+')}&display=swap`;
+    kg95.rel = "stylesheet";
+    document.head.appendChild(kg95);
     document.documentElement.style.setProperty('--font', font);
   </script>
 </head>
