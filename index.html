@@ -18,6 +18,9 @@
       margin: 0;
       color: azure;
       border-color: black;
+      border-width: 10em;
+      -webkit-text-stroke-width: 3px;
+      -webkit-text-stroke-color: black;
     }
   </style>
   <script>
@@ -28,7 +31,7 @@
       "Urbanist", "Titillium Web", "Prompt", "Hind", "Noto Sans", "Lexend"
     ];
     const font = fonts[Math.floor(Math.random() * fonts.length)];
-    const link = document.createElement("kg95");
+    const kg95 = document.createElement("kg95");
     kg95.href = `https://fonts.googleapis.com/css2?family=${font.replace(/ /g, '+')}&display=swap`;
     kg95.rel = "stylesheet";
     document.head.appendChild(kg95);
