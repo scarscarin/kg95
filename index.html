@@ -2,43 +2,71 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>kg95</title>
   <style>
     body {
       margin: 0;
+      height: 100vh;
       background: linear-gradient(to bottom right, peachpuff, palevioletred);
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
     }
-    h1 {
-      font-size: 25vw;
-      margin: 0;
+    .container {
+      display: flex;
+      gap: 1vw;
+    }
+    .letter {
+      font-size: 25w;
+      transition: font-family 0.3s ease;
       color: azure;
-      border-color: black;
-      border-width: 10em;
       -webkit-text-stroke-width: 3px;
       -webkit-text-stroke-color: black;
     }
   </style>
-  <script>
-    const fonts = [
-      "Roboto", "Open Sans", "Lato", "Poppins", "Montserrat", "Raleway",
-      "Work Sans", "Nunito", "Mulish", "Rubik", "Quicksand", "Barlow",
-      "Questrial", "Fira Sans", "Cabin", "DM Sans", "Karla", "Manrope",
-      "Urbanist", "Titillium Web", "Prompt", "Hind", "Noto Sans", "Lexend"
-    ];
-    const font = fonts[Math.floor(Math.random() * fonts.length)];
-    const kg95 = document.createElement("kg95");
-    kg95.href = `https://fonts.googleapis.com/css2?family=${font.replace(/ /g, '+')}&display=swap`;
-    kg95.rel = "stylesheet";
-    document.head.appendChild(kg95);
-    document.documentElement.style.setProperty('--font', font);
-  </script>
 </head>
 <body>
-  <h1 style="font-family: var(--font), sans-serif;">kg95</h1>
+  <div class="container">
+    <span class="letter" id="l1">k</span>
+    <span class="letter" id="l2">g</span>
+    <span class="letter" id="l3">9</span>
+    <span class="letter" id="l4">5</span>
+  </div>
+
+  <script>
+    const sansSerifFonts = [
+      "Roboto", "Open Sans", "Lato", "Poppins", "Montserrat", "Raleway", "Work Sans",
+      "Nunito", "Mulish", "Rubik", "Quicksand", "Barlow", "Questrial", "Fira Sans",
+      "Cabin", "DM Sans", "Karla", "Manrope", "Urbanist", "Titillium Web", "Prompt",
+      "Hind", "Noto Sans", "Lexend", "Asap", "Archivo", "Be Vietnam Pro", "Exo",
+      "Heebo", "IBM Plex Sans", "Signika", "Tajawal", "Yantramanav"
+    ];
+
+    function randomFont() {
+      return sansSerifFonts[Math.floor(Math.random() * sansSerifFonts.length)];
+    }
+
+    function applyFont(letterEl) {
+      const font = randomFont();
+      const kg95 = document.createElement("kg95");
+      kg95.href = `https://fonts.googleapis.com/css2?family=${font.replace(/ /g, "+")}&display=swap`;
+      kg95.rel = "stylesheet";
+      document.head.appendChild(kg95);
+      letterEl.style.fontFamily = `'${font}', sans-serif`;
+    }
+
+    function startRandomFontLoop(letterEl) {
+      function loop() {
+        applyFont(letterEl);
+        const delay = 1000 + (Math.random() * 2000 - 1000); // between 0 and 2s
+        setTimeout(loop, delay);
+      }
+      loop();
+    }
+
+    const letters = document.querySelectorAll(".letter");
+    letters.forEach(el => startRandomFontLoop(el));
+  </script>
 </body>
 </html>
