@@ -1,107 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>🍊 kg95</title>
-<style>
-  body {
-    margin: 0;
-    height: 100vh;
-    background: linear-gradient(to bottom right, peachpuff, palevioletred);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .container {
-    display: flex;
-    gap: 1vw;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-  }
-
-  .letter {
-    font-size: 33em;
-    transition: font-family 0.3s ease;
-    color: azure;
-    font-weight: 900;
-    text-shadow:
-      -2px -2px 0 #000,
-      2px -2px 0 #000,
-      -2px 2px 0 #000,
-      2px 2px 0 #000,
-      -3px 0px 0 #000,
-      3px 0px 0 #000,
-      0px -3px 0 #000,
-      0px 3px 0 #000;
-  }
-
-  @media (max-width: 768px), (max-height: 500px) {
-    .container {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(2, 1fr);
-      gap: 2vw;
-    }
-
-    .letter {
-      font-size: 40vh;
-    }
-  }
-</style>
-
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Draft</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-<div class="container">
-  <span class="letter" id="l1">k</span>
-  <span class="letter" id="l2">g</span>
-  <span class="letter" id="l3">9</span>
-  <span class="letter" id="l4">5</span>
-</div>
+<body class="min-h-screen p-5">
+    <div class="h-[calc(100vh-2.5rem)] flex gap-5">
+        <div class="flex-1 grid grid-cols-1 grid-rows-12 gap-4">
+            <button class="grid-item border-2px-black">WHO</button>
+            <button class="grid-item border-2px-black">WHERE</button>
+            <button class="grid-item border-2px-black">WHEN</button>
+            <button class="grid-item border-2px-black">CONTACT</button>
+        </div>
+        
+        <!-- Right Section - Big container with background image -->
+        <div class="flex-[4] relative border-2 border-black">
+            <!-- YouTube iframe -->
+            <iframe 
+                class="absolute inset-0 w-full h-full" 
+                src="https://www.youtube.com/embed/jfKfPfyJRdk?si=SkQ1LhE1kpCE0-hl" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin" 
+                allowfullscreen>
+            </iframe>
+            
+            <!-- KG95 Text Overlay -->
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <h1 class="font-black text-[25vw] text-white leading-none" 
+                    style="mix-blend-mode: difference;">
+                    KG95
+                </h1>
+            </div>
+        </div>
+    </div>
 
-
-  <script>
-    const sansSerifFonts = [
-      "Roboto", "Open Sans", "Lato", "Poppins", "Montserrat", "Raleway", "Work Sans",
-      "Nunito", "Mulish", "Rubik", "Quicksand", "Barlow", "Questrial", "Fira Sans",
-      "Cabin", "DM Sans", "Karla", "Manrope", "Urbanist", "Titillium Web", "Prompt",
-      "Hind", "Noto Sans", "Lexend", "Asap", "Archivo", "Be Vietnam Pro", "Exo",
-      "Heebo", "IBM Plex Sans", "Signika", "Tajawal", "Yantramanav"
-    ];
-
-    function randomFont() {
-      let randomFont = sansSerifFonts[Math.floor(Math.random() * sansSerifFonts.length)];
-      console.log(randomFont);
-      return randomFont;
-    }
-
-    function applyFont(letterEl) {
-      const font = randomFont();
-      const kg95 = document.createElement("link");
-      kg95.href = `https://fonts.googleapis.com/css2?family=${font.replace(/ /g, "+")}:wght@900&display=swap`;
-      kg95.rel = "stylesheet";
-      document.head.appendChild(kg95);
-      letterEl.style.fontFamily = `'${font}', sans-serif`;
-      console.log(kg95.href);
-    }
-
-    function startRandomFontLoop(letterEl) {
-      function loop() {
-        applyFont(letterEl);
-        const delay = 1000 + (Math.random() * 2000 - 1000); // between 0 and 2s
-        setTimeout(loop, delay);
-        console.log("hellooo??");
-      }
-      loop();
-    }
-
-    const letters = document.querySelectorAll(".letter");
-    letters.forEach(el => startRandomFontLoop(el));
-  </script>
 </body>
 </html>
