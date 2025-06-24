@@ -5,39 +5,156 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Website Draft</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'BianZhiDai';
+            src: url('bianzhidai_COLR-GRAY.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        .grid-item {
+            border: 2px solid black;
+        }
+        
+        .fade-transition {
+            transition: opacity 0.3s ease-in-out;
+        }
+        
+        .copy-icon {
+            width: 1em;
+            height: 1em;
+            position: absolute;
+            right: 0.5em;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        #contactBtn {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
 </head>
 <body class="min-h-screen p-5">
     <div class="h-[calc(100vh-2.5rem)] flex gap-5">
         <div class="flex-1 grid grid-cols-1 grid-rows-12 gap-4">
-            <button class="grid-item border-2px-black">WHO</button>
-            <button class="grid-item border-2px-black">WHERE</button>
-            <button class="grid-item border-2px-black">WHEN</button>
-            <button class="grid-item border-2px-black">CONTACT</button>
+            <button id="whereBtn" class="grid-item" onclick="toggleMap()">WHERE</button>
+            <button id="whatBtn" class="grid-item" onclick="toggleStream()">WHAT</button>
+            <button id="contactBtn" class="grid-item" onclick="showContact()">CONTACT</button>
         </div>
         
         <!-- Right Section - Big container with background image -->
-        <div class="flex-[4] relative border-2 border-black">
+        <div class="flex-[4] relative border-2 border-black bg-white">
             <!-- YouTube iframe -->
             <iframe 
-                class="absolute inset-0 w-full h-full" 
-                src="https://www.youtube.com/embed/jfKfPfyJRdk?si=SkQ1LhE1kpCE0-hl" 
-                title="YouTube video player" 
+                id="youtubeFrame"
+                class="absolute inset-0 w-full h-full fade-transition opacity-0 pointer-events-none" 
+                src="https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=1&mute=1&controls=0&modestbranding=1&showinfo=0&rel=0&iv_load_policy=3&disablekb=1"
+                title="" 
                 frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                referrerpolicy="strict-origin-when-cross-origin" 
+                allow="autoplay; encrypted-media" 
                 allowfullscreen>
             </iframe>
             
+            <!-- Map iframe (hidden by default) -->
+            <iframe 
+                id="mapFrame"
+                class="absolute inset-0 w-full h-full fade-transition opacity-0 pointer-events-none"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2446.657!2d4.313!3d52.078!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c5b7d9f1a1a1a1%3A0x1a1a1a1a1a1a1a1a!2sPrinsegracht%2064%2C%202512%20GB%20Den%20Haag%2C%20Netherlands!5e0!3m2!1sen!2snl!4v1234567890123"
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+            
             <!-- KG95 Text Overlay -->
-            <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <h1 class="font-black text-[25vw] text-white leading-none" 
-                    style="mix-blend-mode: difference;">
+            <div id="kg95Text" class="absolute inset-0 flex items-center justify-center pointer-events-none fade-transition">
+                <h1 class="text-[25vw] leading-none" style="font-family: 'BianZhiDai', monospace; color: black;">
                     KG95
                 </h1>
             </div>
         </div>
     </div>
 
+    <script>
+        let activeContent = 'none'; // 'none', 'stream', 'map'
+        let contactRevealed = false;
+
+        function toggleStream() {
+            const youtubeFrame = document.getElementById('youtubeFrame');
+            const mapFrame = document.getElementById('mapFrame');
+            const whatBtn = document.getElementById('whatBtn');
+            const whereBtn = document.getElementById('whereBtn');
+            
+            if (activeContent === 'stream') {
+                // Turn off stream
+                activeContent = 'none';
+                youtubeFrame.style.opacity = '0';
+                youtubeFrame.style.pointerEvents = 'none';
+                whatBtn.style.backgroundColor = '';
+                whatBtn.style.color = '';
+            } else {
+                // Turn on stream, turn off map
+                activeContent = 'stream';
+                youtubeFrame.style.opacity = '1';
+                youtubeFrame.style.pointerEvents = 'auto';
+                mapFrame.style.opacity = '0';
+                mapFrame.style.pointerEvents = 'none';
+                whatBtn.style.backgroundColor = 'black';
+                whatBtn.style.color = 'white';
+                whereBtn.style.backgroundColor = '';
+                whereBtn.style.color = '';
+            }
+        }
+
+        function toggleMap() {
+            const mapFrame = document.getElementById('mapFrame');
+            const youtubeFrame = document.getElementById('youtubeFrame');
+            const whereBtn = document.getElementById('whereBtn');
+            const whatBtn = document.getElementById('whatBtn');
+            
+            if (activeContent === 'map') {
+                // Turn off map
+                activeContent = 'none';
+                mapFrame.style.opacity = '0';
+                mapFrame.style.pointerEvents = 'none';
+                whereBtn.style.backgroundColor = '';
+                whereBtn.style.color = '';
+            } else {
+                // Turn on map, turn off stream
+                activeContent = 'map';
+                mapFrame.style.opacity = '1';
+                mapFrame.style.pointerEvents = 'auto';
+                youtubeFrame.style.opacity = '0';
+                youtubeFrame.style.pointerEvents = 'none';
+                whereBtn.style.backgroundColor = 'black';
+                whereBtn.style.color = 'white';
+                whatBtn.style.backgroundColor = '';
+                whatBtn.style.color = '';
+            }
+        }
+
+        function showContact() {
+            const contactBtn = document.getElementById('contactBtn');
+            
+            if (!contactRevealed) {
+                // First click: just show the email with copy icon
+                contactBtn.innerHTML = `hello@kg95.nl <img class="copy-icon" src="https://cdn-icons-png.flaticon.com/512/4922/4922982.png" alt="copy">`;
+                contactRevealed = true;
+            } else {
+                // Second click: copy to clipboard and show checkmark
+                navigator.clipboard.writeText('hello@kg95.nl').then(() => {
+                    contactBtn.innerHTML = `hello@kg95.nl <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20,6 9,17 4,12"></polyline></svg>`;
+                }).catch(() => {
+                    // Fallback if clipboard API fails
+                    contactBtn.innerHTML = `hello@kg95.nl <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20,6 9,17 4,12"></polyline></svg>`;
+                });
+            }
+        }
+    </script>
 </body>
 </html>
