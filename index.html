@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Draft</title>
+    <title>📍 KG95 | site-in-progress</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,9 +48,7 @@
             <button id="contactBtn" class="grid-item" onclick="showContact()">CONTACT</button>
         </div>
         
-        <!-- Right Section - Big container with background image -->
         <div class="flex-[4] relative border-2 border-black bg-white">
-            <!-- YouTube iframe -->
             <iframe 
                 id="youtubeFrame"
                 class="absolute inset-0 w-full h-full fade-transition opacity-0 pointer-events-none" 
@@ -61,7 +59,6 @@
                 allowfullscreen>
             </iframe>
             
-            <!-- Map iframe (hidden by default) -->
             <iframe 
                 id="mapFrame"
                 class="absolute inset-0 w-full h-full fade-transition opacity-0 pointer-events-none"
@@ -71,7 +68,6 @@
                 referrerpolicy="no-referrer-when-downgrade">
             </iframe>
             
-            <!-- KG95 Text Overlay -->
             <div id="kg95Text" class="absolute inset-0 flex items-center justify-center pointer-events-none fade-transition">
                 <h1 class="text-[25vw] leading-none" style="font-family: 'BianZhiDai', monospace; color: black;">
                     KG95
@@ -81,7 +77,7 @@
     </div>
 
     <script>
-        let activeContent = 'none'; // 'none', 'stream', 'map'
+        let activeContent = 'none';
         let contactRevealed = false;
 
         function toggleStream() {
@@ -118,14 +114,12 @@
             const whatBtn = document.getElementById('whatBtn');
             
             if (activeContent === 'map') {
-                // Turn off map
                 activeContent = 'none';
                 mapFrame.style.opacity = '0';
                 mapFrame.style.pointerEvents = 'none';
                 whereBtn.style.backgroundColor = '';
                 whereBtn.style.color = '';
             } else {
-                // Turn on map, turn off stream
                 activeContent = 'map';
                 mapFrame.style.opacity = '1';
                 mapFrame.style.pointerEvents = 'auto';
@@ -142,15 +136,12 @@
             const contactBtn = document.getElementById('contactBtn');
             
             if (!contactRevealed) {
-                // First click: just show the email with copy icon
                 contactBtn.innerHTML = `hello@kg95.nl <img class="copy-icon" src="https://cdn-icons-png.flaticon.com/512/4922/4922982.png" alt="copy">`;
                 contactRevealed = true;
             } else {
-                // Second click: copy to clipboard and show checkmark
                 navigator.clipboard.writeText('hello@kg95.nl').then(() => {
                     contactBtn.innerHTML = `hello@kg95.nl <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20,6 9,17 4,12"></polyline></svg>`;
                 }).catch(() => {
-                    // Fallback if clipboard API fails
                     contactBtn.innerHTML = `hello@kg95.nl <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20,6 9,17 4,12"></polyline></svg>`;
                 });
             }
