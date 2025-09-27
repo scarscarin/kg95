@@ -8,37 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        @font-face {
-            font-family: 'BianZhiDai';
-            src: url('bianzhidai_COLR-GRAY.woff') format('woff');
-            font-weight: normal;
-            font-style: normal;
-        }
-        .grid-item {
-            border: 2px solid black;
-        }
-        
-        .fade-transition {
-            transition: opacity 0.3s ease-in-out;
-        }
-        
-        .copy-icon {
-            width: 1em;
-            height: 1em;
-            position: absolute;
-            right: 0.5em;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-        
-        #contactBtn {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="min-h-screen p-5">
     <div class="h-[calc(100vh-2.5rem)] flex flex-col md:flex-row gap-5">
@@ -76,74 +46,7 @@
         </div>
     </div>
 
-    <script>
-        let activeContent = 'none';
-        let contactRevealed = false;
-
-        function toggleStream() {
-            const youtubeFrame = document.getElementById('youtubeFrame');
-            const mapFrame = document.getElementById('mapFrame');
-            const whatBtn = document.getElementById('whatBtn');
-            const whereBtn = document.getElementById('whereBtn');
-            
-            if (activeContent === 'stream') {
-                activeContent = 'none';
-                youtubeFrame.style.opacity = '0';
-                youtubeFrame.style.pointerEvents = 'none';
-                whatBtn.style.backgroundColor = '';
-                whatBtn.style.color = '';
-            } else {
-                activeContent = 'stream';
-                youtubeFrame.style.opacity = '1';
-                youtubeFrame.style.pointerEvents = 'auto';
-                mapFrame.style.opacity = '0';
-                mapFrame.style.pointerEvents = 'none';
-                whatBtn.style.backgroundColor = 'black';
-                whatBtn.style.color = 'white';
-                whereBtn.style.backgroundColor = '';
-                whereBtn.style.color = '';
-            }
-        }
-
-        function toggleMap() {
-            const mapFrame = document.getElementById('mapFrame');
-            const youtubeFrame = document.getElementById('youtubeFrame');
-            const whereBtn = document.getElementById('whereBtn');
-            const whatBtn = document.getElementById('whatBtn');
-            
-            if (activeContent === 'map') {
-                activeContent = 'none';
-                mapFrame.style.opacity = '0';
-                mapFrame.style.pointerEvents = 'none';
-                whereBtn.style.backgroundColor = '';
-                whereBtn.style.color = '';
-            } else {
-                activeContent = 'map';
-                mapFrame.style.opacity = '1';
-                mapFrame.style.pointerEvents = 'auto';
-                youtubeFrame.style.opacity = '0';
-                youtubeFrame.style.pointerEvents = 'none';
-                whereBtn.style.backgroundColor = 'black';
-                whereBtn.style.color = 'white';
-                whatBtn.style.backgroundColor = '';
-                whatBtn.style.color = '';
-            }
-        }
-
-        function showContact() {
-            const contactBtn = document.getElementById('contactBtn');
-            
-            if (!contactRevealed) {
-                contactBtn.innerHTML = `hello@kg95.nl <img class="copy-icon" src="https://cdn-icons-png.flaticon.com/512/4922/4922982.png" alt="copy">`;
-                contactRevealed = true;
-            } else {
-                navigator.clipboard.writeText('hello@kg95.nl').then(() => {
-                    contactBtn.innerHTML = `hello@kg95.nl <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20,6 9,17 4,12"></polyline></svg>`;
-                }).catch(() => {
-                    contactBtn.innerHTML = `hello@kg95.nl <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20,6 9,17 4,12"></polyline></svg>`;
-                });
-            }
-        }
+    <script src="script.js">
     </script>
 </body>
 </html>
