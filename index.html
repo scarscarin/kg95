@@ -1,22 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>📍 KG95</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-
 <body class="min-h-screen p-5">
     <div class="h-[calc(100vh-2.5rem)] flex flex-col md:flex-row gap-5">
-        <div class="flex-1 md:flex-[4] order-1 md:order-2 relative border-2 border-black bg-white">
-            <div>
+        <div class="flex-1 md:flex-[4] order-1 md:order-2 relative border-2 border-black bg-white overflow-hidden">
+            <div class="p-4 space-y-3 relative z-10">
                 <h1>Call for new Members</h1>
                 <p>From January 2026, a new studio space at KG95 ([sqm] - [$$$ p/m]) will be available in our building
                     at Prinsegracht 64 in The Hague's city center, for one or more new members.</p>
@@ -34,21 +19,40 @@
 
                 <p>If you are interested, please apply through this form: <a
                         href="https://kg95.nl/apply">kg95.nl/apply</a></p>
-                <b>Deadline</b>: December 12, 2025</p>
+                <p><b>Deadline</b>: December 12, 2025</p>
 
-                <p>For more information or questions, contact us at <a href="mailto:bestuur@kg95.nl">bestuur@kg95.nl</a>
-                    with the subject line
-                <pre>Open Call January 2026.</pre>
+                <p>For more information or questions, contact us at
+                    <a href="mailto:bestuur@kg95.nl">bestuur@kg95.nl</a> with the subject line
                 </p>
+                <pre>Open Call January 2026.</pre>
             </div>
 
-            <iframe id="mapFrame" class="absolute inset-0 w-full h-full fade-transition opacity-0 pointer-events-none"
+            <!-- MAP -->
+            <iframe
+                id="mapFrame"
+                class="absolute inset-0 w-full h-full fade-transition opacity-0 pointer-events-none"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2446.657!2d4.313!3d52.078!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c5b7d9f1a1a1a1%3A0x1a1a1a1a1a1a1a1a!2sPrinsegracht%2064%2C%202512%20GB%20Den%20Haag%2C%20Netherlands!5e0!3m2!1sen!2snl!4v1234567890123"
-                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                allowfullscreen
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
             </iframe>
 
-            <div id="kg95Text"
-                class="absolute inset-0 flex items-center justify-center pointer-events-none fade-transition">
+            <!-- STREAM -->
+            <iframe
+                id="youtubeFrame"
+                class="absolute inset-0 w-full h-full fade-transition opacity-0 pointer-events-none"
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                title="KG95 stream"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+
+            <!-- DEFAULT BIG TEXT -->
+            <div
+                id="kg95Text"
+                class="absolute inset-0 flex items-center justify-center pointer-events-none fade-transition"
+            >
                 <h1 class="text-[25vw] leading-none" style="font-family: 'BianZhiDai', monospace; color: black;">
                     KG95
                 </h1>
@@ -62,8 +66,5 @@
         </div>
     </div>
 
-    <script src="script.js">
-    </script>
+    <script src="script.js" defer></script>
 </body>
-
-</html>
